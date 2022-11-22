@@ -1,0 +1,480 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <groupId>tclapp</groupId>
+    <artifactId>tomee8webapp</artifactId>
+    <packaging>war</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>tomee8webapp Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+    <modelVersion>4.0.0</modelVersion>
+
+    <properties>
+        <!-- BUILD CONFIGURATIONS -->
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.number>${git.commit.time}.${git.commit.id.abbrev}</version.number>
+
+        <!-- ADD dependency jar versions -->
+
+        <!-- PLUGINS -->
+        <maven-compiler-plugin.version>3.2</maven-compiler-plugin.version>
+        <git-commit-id-plugin.version>2.2.5</git-commit-id-plugin.version>
+        <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
+        <maven-war-plugin.version>2.6</maven-war-plugin.version>
+
+
+
+        <!-- log4j -->
+        <log4j-1.2-api.version>2.17.1</log4j-1.2-api.version>
+        <log4j-api.version>2.17.1</log4j-api.version>
+        <log4j-core.version>2.17.1</log4j-core.version>
+        <log4j-jcl.version>2.17.1</log4j-jcl.version>
+        <log4j-jmx-gui.version>2.17.1</log4j-jmx-gui.version>
+        <log4j-slf4j-impl.version>2.17.1</log4j-slf4j-impl.version>
+        <log4j-taglib.version>2.17.1</log4j-taglib.version>
+        
+        <httpclient.version>4.5.2</httpclient.version>
+        <httpclient-cache.version>4.5.2</httpclient-cache.version>
+        <httpcore.version>4.4.4</httpcore.version>
+        <httpmime.version>4.5.2</httpmime.version>
+        <fluent-hc.version>4.5.2</fluent-hc.version>
+        
+        <cxf-core.version>3.1.15</cxf-core.version>
+        <cxf-rt-bindings-soap.version>3.1.15</cxf-rt-bindings-soap.version>
+        <cxf-rt-bindings-xml.version>3.1.15</cxf-rt-bindings-xml.version>
+        <cxf-rt-databinding-jaxb.version>3.1.15</cxf-rt-databinding-jaxb.version>
+        <cxf-rt-frontend-jaxrs.version>3.1.15</cxf-rt-frontend-jaxrs.version>
+        <cxf-rt-frontend-jaxws.version>3.1.15</cxf-rt-frontend-jaxws.version>
+        <cxf-rt-frontend-simple.version>3.1.15</cxf-rt-frontend-simple.version>
+        <cxf-rt-management.version>3.1.15</cxf-rt-management.version>
+        <cxf-rt-rs-extension-providers.version>3.1.15</cxf-rt-rs-extension-providers.version>
+        <cxf-rt-rs-extension-search.version>3.1.15</cxf-rt-rs-extension-search.version>
+        <cxf-rt-rs-security-cors.version>3.1.15</cxf-rt-rs-security-cors.version>
+        <cxf-rt-rs-security-oauth2.version>3.1.15</cxf-rt-rs-security-oauth2.version>
+        <cxf-rt-transports-http.version>3.1.15</cxf-rt-transports-http.version>
+        <cxf-rt-ws-addr.version>3.1.15</cxf-rt-ws-addr.version>
+        <cxf-rt-ws-policy.version>3.1.15</cxf-rt-ws-policy.version>
+        <cxf-rt-ws-security.version>3.1.15</cxf-rt-ws-security.version>
+        <cxf-rt-wsdl.version>3.1.15</cxf-rt-wsdl.version>
+        
+        
+        <openejb-api.version>7.1.0</openejb-api.version>
+        <openejb-client.version>7.1.0</openejb-client.version>
+        <openejb-core.version>7.1.0</openejb-core.version>
+        <openejb-cxf.version>7.1.0</openejb-cxf.version>
+        <openejb-cxf-rs.version>7.1.0</openejb-cxf-rs.version>
+        <openejb-cxf-transport.version>7.1.0</openejb-cxf-transport.version>
+        <openejb-ejbd.version>7.1.0</openejb-ejbd.version>
+        <openejb-hsql.version>7.1.0</openejb-hsql.version>
+        <openejb-http.version>7.1.0</openejb-http.version>
+        <openejb-javaagent.version>7.1.0</openejb-javaagent.version>
+        <openejb-jee.version>7.1.0</openejb-jee.version>
+        <openejb-jee-accessors.version>7.1.0</openejb-jee-accessors.version>
+        <openejb-jpa-integration.version>7.1.0</openejb-jpa-integration.version>
+        <openejb-loader.version>7.1.0</openejb-loader.version>
+        <openejb-rest.version>7.1.0</openejb-rest.version>
+        <openejb-server.version>7.1.0</openejb-server.version>
+        <openejb-webservices.version>7.1.0</openejb-webservices.version>
+        
+        <jdom.version>2.0.5</jdom.version>
+        <jaxen.version>1.1.6</jaxen.version>
+        
+        <jakarta.jakartaee-api.version>8.0.0</jakarta.jakartaee-api.version>
+    </properties>
+   
+    <repositories>
+     
+        <repository>
+            <id>snapshots-repo</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <releases><enabled>false</enabled></releases>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+    </repositories>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+            <version>3.4.8</version>
+            <scope>provided</scope>
+        </dependency>
+
+        
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-bindings-soap</artifactId>
+            <version>3.4.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-bindings-xml</artifactId>
+            <version>3.4.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-databinding-jaxb</artifactId>
+            <version>3.4.8</version>
+            <scope>provided</scope>
+        </dependency>
+
+         <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-jaxws</artifactId>
+            <version>3.4.8</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-frontend-simple</artifactId>
+            <version>3.4.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-management</artifactId>
+            <version>3.4.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-extension-providers</artifactId>
+            <version>3.4.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-extension-search</artifactId>
+            <version>3.4.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-security-cors</artifactId>
+            <version>3.4.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-security-oauth2</artifactId>
+            <version>3.4.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-transports-http</artifactId>
+            <version>3.4.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-ws-addr</artifactId>
+            <version>3.4.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-ws-policy</artifactId>
+            <version>3.4.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-ws-security</artifactId>
+            <version>3.4.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-wsdl</artifactId>
+            <version>3.4.8</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>        
+        
+        
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-api</artifactId>
+            <version>${openejb-api.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-client</artifactId>
+            <version>8.0.13</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-core</artifactId>
+            <version>8.0.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-cxf</artifactId>
+            <version>8.0.13</version>
+            <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-cxf-rs</artifactId>
+            <version>8.0.13</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-cxf-transport</artifactId>
+            <version>8.0.13</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-ejbd</artifactId>
+            <version>8.0.13</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-hsql</artifactId>
+            <version>8.0.13</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-http</artifactId>
+            <version>8.0.13</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-javaagent</artifactId>
+            <version>8.0.13</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-jee</artifactId>
+            <version>8.0.13</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-jee-accessors</artifactId>
+            <version>8.0.13</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-jpa-integration</artifactId>
+            <version>8.0.13</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-loader</artifactId>
+            <version>8.0.13</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-rest</artifactId>
+            <version>8.0.13</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-server</artifactId>
+            <version>8.0.13</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomee</groupId>
+            <artifactId>openejb-webservices</artifactId>
+            <version>8.0.13</version>
+            <scope>provided</scope>
+        </dependency>
+                <dependency>
+          <groupId>jakarta.validation</groupId>
+          <artifactId>jakarta.validation-api</artifactId>
+          <version>2.0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.logging</groupId>
+            <artifactId>jboss-logging</artifactId>
+            <version>3.4.3.Final</version>
+        </dependency>
+        <!-- jdom .....................................................................................-->
+         <dependency>
+            <groupId>org.jdom</groupId>
+            <artifactId>jdom</artifactId>
+            <version>${jdom.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>jaxen</groupId>
+            <artifactId>jaxen</artifactId>
+            <version>${jaxen.version}</version>
+        </dependency>
+        
+        
+        
+        <!-- Logging ..................................................................................-->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-1.2-api</artifactId>
+            <version>${log4j-1.2-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-jcl</artifactId>
+            <version>${log4j-jcl.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-jmx-gui</artifactId>
+            <version>${log4j-jmx-gui.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j-impl</artifactId>
+            <version>${log4j-slf4j-impl.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-taglib</artifactId>
+            <version>${log4j-taglib.version}</version>
+        </dependency>
+        
+
+       <!-- crypto ..................................................................................-->
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcprov-jdk18on</artifactId>
+            <version>1.71.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcmail-jdk18on</artifactId>
+            <version>1.71.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpkix-jdk18on</artifactId>
+            <version>1.71.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcutil-jdk18on</artifactId>
+            <version>1.71.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        
+        <!-- http ..................................................................................-->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>fluent-hc</artifactId>
+            <version>${fluent-hc.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient-cache</artifactId>
+            <version>${httpclient-cache.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>${httpcore.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>${httpmime.version}</version>
+        </dependency>
+        
+    </dependencies>
+    <build>
+        <finalName>tomee8webapp</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+            
+
+            
+            <!-- packaging war without the dependency libs -->
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${maven-war-plugin.version}</version>
+                <configuration>
+                    <packagingExcludes>WEB-INF/lib/*.jar</packagingExcludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    
+    
+</project>
